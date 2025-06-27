@@ -3,8 +3,8 @@ package vn.hoidanit.laptopshop.domain;
 public class User {
 
     private long id;
-    private String name;
-    private String passWord;
+    private String email;
+    private String password;
     private String fullName;
     private String address;
     private String phone;
@@ -17,20 +17,20 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getEmail() {
+        return email;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getPassWord() {
-        return passWord;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPassWord(String passWord) {
-        this.passWord = passWord;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getFullName() {
@@ -59,8 +59,8 @@ public class User {
 
     @Override
     public String toString() {
-        return "User [id=" + id + ", name=" + name + ", passWord=" + passWord + ", fullName=" + fullName + ", address="
-                + address + ", phone=" + phone + "]";
+        return "User [id=" + id + ", email=" + email + ", password=" + password + ", fullName=" + fullName
+                + ", address=" + address + ", phone=" + phone + "]";
     }
 
 }
