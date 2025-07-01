@@ -30,4 +30,8 @@ public class UserService {
         return eric;
     }
 
+    public User getUserById(long id) {
+        return this.userRepository.findById(id);
+    }
+
 }
