@@ -2,9 +2,12 @@ package vn.hoidanit.laptopshop.controller.admin;
 
 import java.util.List;
 
+import jakarta.validation.Valid;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -63,7 +66,13 @@ public class UserController {
     }
 
     @PostMapping("/admin/user/create")
-    public String createUserPage(Model model, @ModelAttribute("newUser") User hoidanit, @RequestParam("hoidanitFile") MultipartFile file) {
+    public String createUserPage(Model model, @ModelAttribute("newUser") @Valid User hoidanit, BindingResult bindingResult, @RequestParam("hoidanitFile") MultipartFile file) {
+        // Validate
+        List<FieldError> errors = bindingResult.getFieldErrors();
+        for (FieldError error : errors ) {
+            System.out.println (">>>>>" + error.getObjectName() + " - " + error.getDefaultMessage());
+        }
+        // hass password & save file name image
         String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
         String hashPassword = this.passwordEncoder.encode(hoidanit.getPassword());
         hoidanit.setAvatar(avatar);
